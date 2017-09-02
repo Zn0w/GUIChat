@@ -1,6 +1,13 @@
 package com.znow.guichat.client;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -13,12 +20,47 @@ public class ClientGUI extends JFrame {
 	private JTextArea consoleArea;
 	private JTextArea messageArea;
 	
+	private ClientMain controller;
+	
+	
+	public ClientGUI(ClientMain controller) {
+		this.controller= controller;
+	}
 	
 	public void drawConnectWindow() {
-		setSize(1280, 720);
-		setTitle("GUI Chat by Zn0w");
+		setTitle("GUI Chat by Zn0w (ConnectWindow)");
 		setLocationRelativeTo(null);
 		setResizable(false);
+		
+		JPanel root = new JPanel();
+		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
+		setContentPane(root);
+		
+		JLabel ipLabel = new JLabel("Enter IP of the server you want to connect:");
+		root.add(ipLabel);
+		ipArea = new JTextField();
+		root.add(ipArea);
+		
+		JLabel portLabel = new JLabel("Enter port of the server you want to connect:");
+		root.add(portLabel);
+		portArea = new JTextField();
+		root.add(portArea);
+		
+		JLabel nameLabel = new JLabel("Enter your name so that other people can recognise you:");
+		root.add(nameLabel);
+		nameArea = new JTextField();
+		root.add(nameArea);
+		
+		JButton connectButton = new JButton("Connect");
+		connectButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.onConnectButton(ipArea.getText(), portArea.getText(), nameArea.getText());
+			}
+		});
+		
+		pack();
+		
 		setVisible(true);
 	}
 	

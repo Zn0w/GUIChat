@@ -13,9 +13,26 @@ public class ClientMain {
 	
 	public void go() {
 		client = new Client();
-		clientGui = new ClientGUI();
+		clientGui = new ClientGUI(this);
 		
 		clientGui.drawConnectWindow();
+	}
+	
+	public void onConnectButton(String ip, String port, String name) {
+		if (client.connectToServer(ip, Integer.valueOf(port), name)) {
+			
+		}
+		else {
+			
+		}
+	}
+	
+	public void onSendButton() {
+		
+	}
+	
+	public void onDisconnectButton() {
+		
 	}
 
 }
