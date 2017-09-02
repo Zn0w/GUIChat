@@ -27,6 +27,8 @@ public class Server {
 				Thread clientThread = new Thread(clientHandler);
 				
 				clientThread.start();
+				
+				System.out.println("Client connected to the server");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -58,6 +58,7 @@ public class ClientGUI extends JFrame {
 				controller.onConnectButton(ipArea.getText(), portArea.getText(), nameArea.getText());
 			}
 		});
+		root.add(connectButton);
 		
 		pack();
 		

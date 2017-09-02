@@ -11,6 +11,8 @@ public class Client implements Runnable {
 	private BufferedReader reader;
 	private PrintWriter writer;
 	
+	private boolean connected;
+	
 	private ClientMain controller;
 	
 	
@@ -24,6 +26,11 @@ public class Client implements Runnable {
 			
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			writer = new PrintWriter(socket.getOutputStream());
+			
+			connected = true;
+			
+			Thread thread  =new Thread(this);
+			thread.start();
 			
 			sendMessage("NAME " + name);
 			

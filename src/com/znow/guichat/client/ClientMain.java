@@ -24,10 +24,10 @@ public class ClientMain {
 	
 	public void onConnectButton(String ip, String port, String name) {
 		if (client.connectToServer(ip, Integer.valueOf(port), name)) {
-			
+			showMessage("Succesfully connected to the server!");
 		}
 		else {
-			
+			showMessage("Failed to connect to the server!");
 		}
 	}
 	
