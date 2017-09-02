@@ -7,7 +7,15 @@ public class ClientMain {
 	
 	
 	public static void main(String[] args) {
+		ClientMain clientMain = new ClientMain();
+		clientMain.go();
+	}
+	
+	public void go() {
+		client = new Client();
+		clientGui = new ClientGUI();
 		
+		clientGui.drawConnectWindow();
 	}
 
 }
