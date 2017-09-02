@@ -12,10 +12,14 @@ public class ClientMain {
 	}
 	
 	public void go() {
-		client = new Client();
+		client = new Client(this);
 		clientGui = new ClientGUI(this);
 		
 		clientGui.drawConnectWindow();
+	}
+	
+	public void showMessage(String message) {
+		System.out.println(message);
 	}
 	
 	public void onConnectButton(String ip, String port, String name) {
