@@ -49,7 +49,7 @@ public class Client implements Runnable {
 	@Override
 	public void run() {
 		try {
-			while (true) {
+			while (connected) {
 				String message;
 				if ((message = reader.readLine()) != null) {
 					controller.showMessage(message);

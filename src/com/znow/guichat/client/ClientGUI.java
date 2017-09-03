@@ -1,5 +1,6 @@
 package com.znow.guichat.client;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -63,6 +64,29 @@ public class ClientGUI extends JFrame {
 		pack();
 		
 		setVisible(true);
+	}
+	
+	public void drawChatWindow() {
+		setTitle("GUI Chat by Zn0w (ChatWindow)");
+		
+		JPanel root = new JPanel();
+		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
+		setContentPane(root);
+		
+		consoleArea = new JTextArea(20, 75);
+		consoleArea.setEditable(false);
+		root.add(consoleArea);
+		
+		JLabel guide = new JLabel("Enter your messages here:");
+		root.add(guide);
+		
+		JPanel messagePane = new JPanel();
+		root.add(messagePane);
+		
+		messageArea = new JTextArea(2, 75);
+		messagePane.add(messageArea);
+		
+		pack();
 	}
 	
 }
