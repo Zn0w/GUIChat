@@ -89,6 +89,9 @@ public class ClientGUI extends JFrame {
 		messageArea = new JTextArea(2, 75);
 		messagePane.add(messageArea);
 		
+		JPanel buttonPane = new JPanel();
+		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.Y_AXIS));
+		
 		JButton sendButton = new JButton("Send message");
 		sendButton.addActionListener(new ActionListener() {
 			@Override
@@ -96,7 +99,18 @@ public class ClientGUI extends JFrame {
 				controller.onSendButton(messageArea.getText());
 			}
 		});
-		messagePane.add(sendButton);
+		buttonPane.add(sendButton);
+		
+		JButton disconnectButton = new JButton("Disconnect");
+		disconnectButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.onDisconnectButton();
+			}
+		});
+		buttonPane.add(disconnectButton);
+		
+		messagePane.add(buttonPane);
 		
 		pack();
 	}
