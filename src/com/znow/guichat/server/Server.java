@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Server {
 	
-	private ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
+	private ArrayList<ClientHandler> clientHandlers = new ArrayList<ClientHandler>();
 	private boolean running;
 	
 	
@@ -36,12 +36,23 @@ public class Server {
 		}
 	}
 	
-	private void connectClient(PrintWriter writer) {
-		writers.add(writer);
+	private void connectClient(ClientHandler clientHandler) {
+		clientHandler.connected = true;
+		clientHandlers.add(clientHandler);
 	}
 	
-	private void disconnectClient(PrintWriter writer) {
-		writers.remove(writer);
+	private void disconnectClient(ClientHandler clientHandler) {
+		clientHandler.connected = false;
+		
+		try {
+			clientHandler.reader.close();
+			clientHandler.writer.close();
+			clientHandler.clientSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		clientHandlers.remove(clientHandler);
 	}
 	
 	private void analyseMessage(String message, ClientHandler clientHandler) {
@@ -56,15 +67,15 @@ public class Server {
 		}
 		else if (messageDiv[0].equals("DISCONNECT")) {
 			sendOutMessage(clientHandler.name + " has left the room.");
-			disconnectClient(clientHandler.writer);
+			disconnectClient(clientHandler);
 			clientHandler.connected = false;
 		}
 	}
 	
 	private void sendOutMessage(String message) {
-		for (PrintWriter writer : writers) {
-			writer.println(message);
-			writer.flush();
+		for (ClientHandler clientHandler : clientHandlers) {
+			clientHandler.writer.println(message);
+			clientHandler.writer.flush();
 		}
 	}
 	
@@ -88,12 +99,10 @@ public class Server {
 				reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				writer = new PrintWriter(clientSocket.getOutputStream());
 				
-				server.connectClient(writer);
+				server.connectClient(this);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			connected = true;
 		}
 		
 		@Override
