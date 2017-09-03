@@ -22,6 +22,9 @@ public class ClientMain {
 	
 	public void showMessage(String message) {
 		System.out.println(message);
+		
+		if (clientGui.getConsoleArea() != null)
+			clientGui.getConsoleArea().append(message + "\n");
 	}
 	
 	public void onConnectButton(String ip, String port, String name) {

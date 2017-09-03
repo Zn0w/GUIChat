@@ -1,6 +1,5 @@
 package com.znow.guichat.client;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,8 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 public class ClientGUI extends JFrame {
 	
@@ -75,7 +76,9 @@ public class ClientGUI extends JFrame {
 		
 		consoleArea = new JTextArea(20, 75);
 		consoleArea.setEditable(false);
-		root.add(consoleArea);
+		JScrollPane consoleScrollPane = new JScrollPane(consoleArea);
+		consoleScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		root.add(consoleScrollPane);
 		
 		JLabel guide = new JLabel("Enter your messages here:");
 		root.add(guide);
@@ -87,6 +90,10 @@ public class ClientGUI extends JFrame {
 		messagePane.add(messageArea);
 		
 		pack();
+	}
+	
+	public JTextArea getConsoleArea() {
+		return consoleArea;
 	}
 	
 }
