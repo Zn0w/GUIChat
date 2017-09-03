@@ -45,11 +45,14 @@ public class Server {
 	}
 	
 	private void analyseMessage(String message, ClientHandler clientHandler) {
-		
+		sendOutMessage(message);
 	}
 	
 	private void sendOutMessage(String message) {
-		
+		for (PrintWriter writer : writers) {
+			writer.println("Server: " + message);
+			writer.flush();
+		}
 	}
 	
 	private class ClientHandler implements Runnable {
@@ -87,8 +90,7 @@ public class Server {
 					String message;
 					if ((message = reader.readLine()) != null) {
 						System.out.println("Client: " + message);
-						writer.println("Server: " + message);
-						writer.flush();
+						server.analyseMessage(message, this);
 					}
 				}
 			} catch (IOException e) {
