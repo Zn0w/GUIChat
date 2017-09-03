@@ -32,7 +32,7 @@ public class Client implements Runnable {
 			Thread thread = new Thread(this);
 			thread.start();
 			
-			sendMessage("NAME;" + name);
+			sendName(name);
 			
 			return true;
 		} catch (IOException e) {
@@ -41,9 +41,18 @@ public class Client implements Runnable {
 		}
 	}
 	
-	public void sendMessage(String message) {
-		writer.println(message);
+	private void sendName(String name) {
+		writer.println("NAME;" + name);
 		writer.flush();
+	}
+	
+	public void sendMessage(String message) {
+		writer.println("MESSAGE;" + message);
+		writer.flush();
+	}
+	
+	public void disconnect() {
+		
 	}
 
 	@Override

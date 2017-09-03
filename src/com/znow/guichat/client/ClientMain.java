@@ -42,8 +42,10 @@ public class ClientMain {
 		}
 	}
 	
-	public void onSendButton() {
+	public void onSendButton(String message) {
+		client.sendMessage(message);
 		
+		clientGui.getMessageArea().setText("");
 	}
 	
 	public void onDisconnectButton() {

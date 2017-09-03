@@ -89,11 +89,24 @@ public class ClientGUI extends JFrame {
 		messageArea = new JTextArea(2, 75);
 		messagePane.add(messageArea);
 		
+		JButton sendButton = new JButton("Send message");
+		sendButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.onSendButton(messageArea.getText());
+			}
+		});
+		messagePane.add(sendButton);
+		
 		pack();
 	}
 	
 	public JTextArea getConsoleArea() {
 		return consoleArea;
+	}
+	
+	public JTextArea getMessageArea() {
+		return messageArea;
 	}
 	
 }

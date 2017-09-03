@@ -63,7 +63,7 @@ public class Server {
 	
 	private void sendOutMessage(String message) {
 		for (PrintWriter writer : writers) {
-			writer.println("Server: " + message);
+			writer.println(message);
 			writer.flush();
 		}
 	}
