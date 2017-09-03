@@ -45,7 +45,20 @@ public class Server {
 	}
 	
 	private void analyseMessage(String message, ClientHandler clientHandler) {
-		sendOutMessage(message);
+		String[] messageDiv = message.split(";");
+		
+		if (messageDiv[0].equals("NAME")) {
+			clientHandler.name = messageDiv[1];
+			sendOutMessage(clientHandler.name + " has joined the room!");
+		}
+		else if (messageDiv[0].equals("MESSAGE")) {
+			sendOutMessage(clientHandler.name + ": " + messageDiv[1]);
+		}
+		else if (messageDiv[0].equals("DISCONNECT")) {
+			sendOutMessage(clientHandler.name + " has left the room.");
+			disconnectClient(clientHandler.writer);
+			clientHandler.connected = false;
+		}
 	}
 	
 	private void sendOutMessage(String message) {
@@ -80,13 +93,13 @@ public class Server {
 				e.printStackTrace();
 			}
 			
-			running = true;
+			connected = true;
 		}
 		
 		@Override
 		public void run() {
 			try {
-				while (running) {
+				while (connected && server.running) {
 					String message;
 					if ((message = reader.readLine()) != null) {
 						System.out.println("Client: " + message);

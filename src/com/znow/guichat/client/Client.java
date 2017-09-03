@@ -29,10 +29,10 @@ public class Client implements Runnable {
 			
 			connected = true;
 			
-			Thread thread  =new Thread(this);
+			Thread thread = new Thread(this);
 			thread.start();
 			
-			sendMessage("NAME " + name);
+			sendMessage("NAME;" + name);
 			
 			return true;
 		} catch (IOException e) {
