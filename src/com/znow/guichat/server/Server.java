@@ -18,7 +18,7 @@ public class Server {
 		try {
 			ServerSocket serverSocket = new ServerSocket(port);
 			running = true;
-			System.out.println("Succesfully created server, listening to clients");
+			System.out.println("Succesfully created server : " + port + ", listening to clients");
 			
 			while (running) {
 				Socket clientSocket = serverSocket.accept();

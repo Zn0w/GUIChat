@@ -43,6 +43,9 @@ public class ClientMain {
 	}
 	
 	public void onSendButton(String message) {
+		if (message.equals(""))
+			return;
+		
 		client.sendMessage(message);
 		
 		clientGui.getMessageArea().setText("");
