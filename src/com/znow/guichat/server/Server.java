@@ -68,7 +68,6 @@ public class Server {
 		else if (messageDiv[0].equals("DISCONNECT")) {
 			sendOutMessage(clientHandler.name + " has left the room.");
 			disconnectClient(clientHandler);
-			clientHandler.connected = false;
 		}
 	}
 	

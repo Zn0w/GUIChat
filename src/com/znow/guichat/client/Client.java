@@ -52,7 +52,10 @@ public class Client implements Runnable {
 	}
 	
 	public void disconnect() {
+		writer.println("DISCONNECT;");
+		writer.flush();
 		
+		connected = false;
 	}
 
 	@Override

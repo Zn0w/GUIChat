@@ -49,7 +49,8 @@ public class ClientMain {
 	}
 	
 	public void onDisconnectButton() {
-		
+		client.disconnect();
+		clientGui.drawConnectWindow();
 	}
 
 }
