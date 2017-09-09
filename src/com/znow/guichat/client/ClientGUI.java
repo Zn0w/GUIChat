@@ -91,9 +91,6 @@ public class ClientGUI extends JFrame {
 		consoleScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		root.add(consoleScrollPane);
 		
-		JLabel guide = new JLabel("Enter your messages here:");
-		root.add(guide);
-		
 		JPanel messagePane = new JPanel();
 		root.add(messagePane);
 		
