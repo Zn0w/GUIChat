@@ -2,13 +2,14 @@ package com.znow.guichat.client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -35,6 +36,7 @@ public class ClientGUI extends JFrame {
 	
 	public void drawConnectWindow() {
 		setTitle("GUI Chat by Zn0w (ConnectWindow)");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel root = new JPanel();
 		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
@@ -71,6 +73,13 @@ public class ClientGUI extends JFrame {
 	
 	public void drawChatWindow() {
 		setTitle("GUI Chat by Zn0w (ChatWindow)");
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent event) {
+	            controller.onDisconnectButton();
+	        }
+	    });
 		
 		JPanel root = new JPanel();
 		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
