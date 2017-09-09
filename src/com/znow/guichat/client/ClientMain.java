@@ -56,12 +56,4 @@ public class ClientMain {
 		clientGui.drawConnectWindow();
 	}
 	
-	public void onCreateRoomButton(String id, String password) {
-		System.out.println("Create " + id + " : " + password);
-	}
-	
-	public void onConnectRoomButton(String id, String password) {
-		System.out.println("Connect " + id + " : " + password);
-	}
-
 }

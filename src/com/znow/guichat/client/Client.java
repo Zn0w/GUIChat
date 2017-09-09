@@ -56,6 +56,13 @@ public class Client implements Runnable {
 		writer.flush();
 		
 		connected = false;
+		
+		try {
+			writer.close();
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

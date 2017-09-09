@@ -117,44 +117,6 @@ public class ClientGUI extends JFrame {
 		pack();
 	}
 	
-	public void drawRoomSelectWindow() {
-		setTitle("GUI Chat by Zn0w (RoomSelect)");
-		
-		JPanel root = new JPanel();
-		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
-		setContentPane(root);
-		
-		JLabel roomIdLabel = new JLabel("Room id:");
-		root.add(roomIdLabel);
-		
-		JTextField roomIdTxt = new JTextField();
-		root.add(roomIdTxt);
-		
-		JLabel roomPasswordLabel = new JLabel("Room password:");
-		root.add(roomPasswordLabel);
-		
-		JPasswordField roomPasswordTxt = new JPasswordField();
-		root.add(roomPasswordTxt);
-		
-		JButton createRoomButton =new JButton("Create chat room");
-		createRoomButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.onCreateRoomButton(roomIdTxt.getText(), String.valueOf(roomPasswordTxt.getPassword()));
-			}
-		});
-		root.add(createRoomButton);
-		
-		JButton connectRoomButton =new JButton("Connect to chat room");
-		connectRoomButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.onConnectRoomButton(roomIdTxt.getText(), String.valueOf(roomPasswordTxt.getPassword()));
-			}
-		});
-		root.add(connectRoomButton);
-	}
-	
 	public JTextArea getConsoleArea() {
 		return consoleArea;
 	}
